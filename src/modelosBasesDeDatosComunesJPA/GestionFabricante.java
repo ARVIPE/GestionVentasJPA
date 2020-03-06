@@ -36,12 +36,17 @@ public class GestionFabricante {
 			
 			opcionElegida = Utils.getIntConsola(0, 4);
 			
-			switch (opcionElegida) {
-			case 0:
-				break;
-			case 1:
+			if(opcionElegida == 1) {
 				listadoEntidades();
-				break;
+			}
+			if(opcionElegida == 2) {
+				creacionEntidad();
+			}
+			if(opcionElegida == 3) {
+				modificacionEntidad();
+			}
+			if(opcionElegida == 4) {
+				eliminacionEntidad();
 			}
 		} while (opcionElegida != 0);
 	}
@@ -51,7 +56,7 @@ public class GestionFabricante {
 	 * 
 	 */
 	private static void listadoEntidades () {
-		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("VentaDeCoche");
+		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("VentaDeCoches");
 		
 		EntityManager em = entityManagerFactory.createEntityManager();
 		
@@ -60,7 +65,7 @@ public class GestionFabricante {
 		List<Fabricante> fabricantes = (List<Fabricante>) q.getResultList();
 		
 		for (Fabricante fabricante : fabricantes) {
-			System.out.println("Fabricante: " + fabricante.getId() + " modelo: " + fabricante.getNombre());
+			System.out.println("Fabricante: " + fabricante.getCif() + " modelo: " + fabricante.getNombre());
 		}
 		
 		em.close();
@@ -91,6 +96,55 @@ public class GestionFabricante {
 		
 		em.close();
 	}
+	
+	
+	
+	/**
+	 * 
+	 */
+	private static void modificacionEntidad () {
+		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("VentaDeCoches");
+
+		EntityManager em = entityManagerFactory.createEntityManager();
+
+		TypedQuery<Fabricante> q = em.createQuery("SELECT f FROM Fabricante as f where f.cif = '12345678A'", Fabricante.class);
+		
+		List<Fabricante> fabricantes = q.getResultList();
+		
+		em.getTransaction().begin();
+		for (Fabricante fabEnLista : fabricantes) {
+			fabEnLista.setNombre("Modificado");
+			em.persist(fabEnLista);
+		}
+		em.getTransaction().commit();
+		
+		em.close();
+	}
+	
+	
+	
+	/**
+	 * 
+	 */
+	private static void eliminacionEntidad () {
+		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("VentaDeCoches");
+
+		EntityManager em = entityManagerFactory.createEntityManager();
+
+		TypedQuery<Fabricante> q = em.createQuery("SELECT f FROM Fabricante as f where f.cif = '12345678A'", Fabricante.class);
+		
+		List<Fabricante> fabricantes = q.getResultList();
+		
+		em.getTransaction().begin();
+		for (Fabricante fabEnLista : fabricantes) {
+			em.remove(fabEnLista);
+		}
+		em.getTransaction().commit();
+		
+		
+		em.close();
+	}
+	
 	
 
 }

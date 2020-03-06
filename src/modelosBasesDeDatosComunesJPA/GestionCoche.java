@@ -63,31 +63,5 @@ public class GestionCoche {
 		
 		em.close();
 	}
-//	/**
-//	 * 
-//	 */
-//	private static void creacionEntidad () {
-//		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("VentaDeCoches");
-//
-//		EntityManager em = entityManagerFactory.createEntityManager();
-//
-//		Coche co = new Coche();
-//		co.setCif("12345678A");
-//		.setNombre("Coches Rafa");
-//		
-//		em.getTransaction().begin();
-//		em.persist(fab);
-//		em.getTransaction().commit();
-//		
-//		TypedQuery<Fabricante> q = em.createQuery("SELECT f FROM Fabricante as f", Fabricante.class);
-//		
-//		List<Fabricante> fabricantes = q.getResultList();
-//		
-//		for (Fabricante fabEnLista : fabricantes) {
-//			System.out.println("Fabricante: " + fabEnLista.getId() + " CIF: " + fabEnLista.getCif() + " Nombre: " + fabEnLista.getNombre());
-//		}
-//		
-//		em.close();
-//	}
-	
+
 }
