@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import com.sun.xml.xsom.impl.scd.ParseException;
 
 import modelosBasesDeDatosComunesJPA.GestionCoche;
+import modelosBasesDeDatosComunesJPA.GestionConcesionario;
 import modelosBasesDeDatosComunesJPA.GestionFabricante;
 import modelosBasesDeDatosComunesJPA.ventaDeCoches.controladores.ErrorBBDDException;
 
@@ -46,6 +47,8 @@ public class Principal {
 				System.exit(0);
 			case 1: 
 				GestionFabricante.menuGestion();
+			case 2:
+				GestionConcesionario.menuGestion();
 			case 4:
 				GestionCoche.menuGestion();
 			}
