@@ -4,6 +4,7 @@ import java.sql.SQLException;
 
 import com.sun.xml.xsom.impl.scd.ParseException;
 
+import modelosBasesDeDatosComunesJPA.GestionCliente;
 import modelosBasesDeDatosComunesJPA.GestionCoche;
 import modelosBasesDeDatosComunesJPA.GestionConcesionario;
 import modelosBasesDeDatosComunesJPA.GestionFabricante;
@@ -49,6 +50,8 @@ public class Principal {
 				GestionFabricante.menuGestion();
 			case 2:
 				GestionConcesionario.menuGestion();
+			case 3:
+				GestionCliente.menuGestion();
 			case 4:
 				GestionCoche.menuGestion();
 			}
