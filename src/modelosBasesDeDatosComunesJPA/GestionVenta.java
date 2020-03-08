@@ -14,24 +14,25 @@ import com.sun.xml.xsom.impl.scd.ParseException;
 
 import modelosBasesDeDatosComunesJPA.ventaDeCoches.Fabricante;
 import modelosBasesDeDatosComunesJPA.ventaDeCoches.Utils;
+import modelosBasesDeDatosComunesJPA.ventaDeCoches.Venta;
 import modelosBasesDeDatosComunesJPA.ventaDeCoches.controladores.ErrorBBDDException;
 import modelosBasesDeDatosComunesJPA.ventaDeCoches.Cliente;
 import modelosBasesDeDatosComunesJPA.ventaDeCoches.Coche;
 
 
 
-public class GestionCliente {
+public class GestionVenta {
 	
 	public static void menuGestion() throws ParseException, java.text.ParseException, SQLException {
 
 		int opcionElegida = -1;
 		do {
-			System.out.println("\n\t\t\tGESTIÓN DE CLIENTE");
+			System.out.println("\n\t\t\tGESTIÓN DE VENTA");
 			
-			System.out.println("\n\t1.- Listado de clientes.");
-			System.out.println("\t2.- Alta de cliente.");
-			System.out.println("\t3.- Modificación de cliente.");
-			System.out.println("\t4.- Baja de cliente.");
+			System.out.println("\n\t1.- Listado de ventas.");
+			System.out.println("\t2.- Alta de venta.");
+			System.out.println("\t3.- Modificación de venta.");
+			System.out.println("\t4.- Baja de venta.");
 			System.out.println("\t0.- Salir");
 			System.out.println("\n\tElija una opción: ");
 			
@@ -61,13 +62,12 @@ public class GestionCliente {
 		
 		EntityManager em = entityManagerFactory.createEntityManager();
 		
-		Query q = em.createNativeQuery("SELECT * FROM cliente;", Cliente.class);
+		Query q = em.createNativeQuery("SELECT * FROM venta;", Venta.class);
 		
-		List<Cliente> clientes = (List<Cliente>) q.getResultList();
+		List<Venta> ventas = (List<Venta>) q.getResultList();
 		
-		for (Cliente cliente : clientes) {
-			System.out.println("Cliente: " + cliente.getNombre() + " apellido: " + cliente.getApellidos() + " localidad: " + cliente.getLocalidad() +
-					" dniNie: " + cliente.getDniNie() + " fechaNac: " + cliente.getFechaNac());
+		for (Venta venta : ventas) {
+			System.out.println(" fecha: " + venta.getFecha() + " precioVenta: " + venta.getPrecioVenta());
 		}
 		
 		em.close();
@@ -80,24 +80,19 @@ public class GestionCliente {
 
 		EntityManager em = entityManagerFactory.createEntityManager();
 
-		Cliente cli = new Cliente();
-		cli.setNombre("Arturo");
-		cli.setApellidos("Vicente Perez");
-		cli.setLocalidad("Cordoba");
-		cli.setDniNie("31031987L");
-		
+		Venta v = new Venta();
+		v.setPrecioVenta(248054);
 		
 		em.getTransaction().begin();
-		em.persist(cli);
+		em.persist(v);
 		em.getTransaction().commit();
 		
-		TypedQuery<Cliente> q = em.createQuery("SELECT cli FROM Cliente as cli", Cliente.class);
+		TypedQuery<Venta> q = em.createQuery("SELECT v FROM Venta as v", Venta.class);
 		
-		List<Cliente> clientes = q.getResultList();
+		List<Venta> ventas = q.getResultList();
 		
-		for (Cliente cliEnLista : clientes) {
-			System.out.println("Cliente: " + cliEnLista.getNombre() + " apellido: " + cliEnLista.getApellidos() + " localidad: " + cliEnLista.getLocalidad() +
-					" dniNie: " + cliEnLista.getDniNie() + " fechaNac: " + cliEnLista.getFechaNac());
+		for (Venta venEnLista : ventas) {
+			System.out.println(" precioVenta: " + venEnLista.getPrecioVenta());
 		}
 		
 		em.close();
@@ -113,14 +108,14 @@ public class GestionCliente {
 
 		EntityManager em = entityManagerFactory.createEntityManager();
 
-		TypedQuery<Cliente> q = em.createQuery("SELECT cli FROM Cliente as cli where cli.dniNie = '31031987L'", Cliente.class);
+		TypedQuery<Venta> q = em.createQuery("SELECT v FROM Venta as v where v.precioVenta = '248054'", Venta.class);
 		
-		List<Cliente> clientes = q.getResultList();
+		List<Venta> ventas = q.getResultList();
 		
 		em.getTransaction().begin();
-		for (Cliente cliEnLista : clientes) {
-			cliEnLista.setNombre("Modificado");
-			em.persist(cliEnLista);
+		for (Venta venEnLista : ventas) {
+			venEnLista.setPrecioVenta(204842);
+			em.persist(venEnLista);
 		}
 		em.getTransaction().commit();
 		
@@ -137,13 +132,13 @@ public class GestionCliente {
 
 		EntityManager em = entityManagerFactory.createEntityManager();
 
-		TypedQuery<Cliente> q = em.createQuery("SELECT cli FROM Cliente as cli where cli.dniNie = '31031987L'", Cliente.class);
+		TypedQuery<Venta> q = em.createQuery("SELECT v FROM Venta as v where v.precioVenta = '248054' or '204842'", Venta.class);
 		
-		List<Cliente> clientes = q.getResultList();
+		List<Venta> ventas = q.getResultList();
 		
 		em.getTransaction().begin();
-		for (Cliente cliEnLista : clientes) {
-			em.remove(cliEnLista);
+		for (Venta venEnLista : ventas) {
+			em.remove(venEnLista);
 		}
 		em.getTransaction().commit();
 		

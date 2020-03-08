@@ -8,6 +8,7 @@ import modelosBasesDeDatosComunesJPA.GestionCliente;
 import modelosBasesDeDatosComunesJPA.GestionCoche;
 import modelosBasesDeDatosComunesJPA.GestionConcesionario;
 import modelosBasesDeDatosComunesJPA.GestionFabricante;
+import modelosBasesDeDatosComunesJPA.GestionVenta;
 import modelosBasesDeDatosComunesJPA.ventaDeCoches.controladores.ErrorBBDDException;
 
 
@@ -54,6 +55,8 @@ public class Principal {
 				GestionCliente.menuGestion();
 			case 4:
 				GestionCoche.menuGestion();
+			case 5:
+				GestionVenta.menuGestion();
 			}
 		} while (opcionElegida != 0);
 	}
