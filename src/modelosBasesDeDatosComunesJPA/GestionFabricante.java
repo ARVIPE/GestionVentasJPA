@@ -154,7 +154,7 @@ public class GestionFabricante {
 	static Fabricante seleccionPorUsuario () throws ErrorBBDDException {
 		Fabricante fab = null;
 		int id = -2;
-		do {
+		do { 
 			System.out.println("\n\tIntroduzca ID del fabricante ('-1' - ver listado, '0' - salir): ");
 			id = Utils.getIntConsola(-1);
 			if (id == -1) {
@@ -162,7 +162,7 @@ public class GestionFabricante {
 			}
 			else {
 				if (id != 0) {
-					fab = FabricanteControlador.get(Id);
+					fab = FabricanteControlador.get(id);
 					if (fab == null) {
 						System.out.println("\tError. Ha especificado un ID inválido.");
 					}

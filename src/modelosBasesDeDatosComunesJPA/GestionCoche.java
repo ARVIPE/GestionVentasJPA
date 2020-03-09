@@ -1,6 +1,6 @@
 package modelosBasesDeDatosComunesJPA;
 
-import java.security.Principal;	
+import java.security.Principal;		
 import java.sql.SQLException;
 import java.util.List;
 
@@ -13,8 +13,6 @@ import javax.persistence.TypedQuery;
 import com.sun.xml.xsom.impl.scd.ParseException;
 
 import modelosBasesDeDatosComunesJPA.ventaDeCoches.Utils;
-import tema7.gestionVenta.gestionVentaCoches.modelo.controladores.ControladorCoche;
-import tema7.gestionVenta.gestionVentaCoches.modelo.controladores.ErrorBBDDException;
 import modelosBasesDeDatosComunesJPA.ventaDeCoches.Fabricante;
 import modelosBasesDeDatosComunesJPA.ventaDeCoches.Coche;
 import modelosBasesDeDatosComunesJPA.ventaDeCoches.Concesionario;
@@ -45,7 +43,7 @@ public class GestionCoche {
 				listadoEntidades();
 				break;
 			case 2:
-				creacionEntidad();
+//				creacionEntidad();
 			}
 		} while (opcionElegida != 0);
 	}
