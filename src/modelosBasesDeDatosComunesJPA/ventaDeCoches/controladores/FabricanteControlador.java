@@ -1,5 +1,9 @@
 package modelosBasesDeDatosComunesJPA.ventaDeCoches.controladores;
 
+import java.sql.Connection;	
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -8,6 +12,7 @@ import javax.persistence.Query;
 
 import modelosBasesDeDatosComunesJPA.Controlador;
 import modelosBasesDeDatosComunesJPA.ventaDeCoches.Fabricante;
+
 
 public class FabricanteControlador extends Controlador {
 
@@ -153,6 +158,8 @@ public class FabricanteControlador extends Controlador {
 	public static String toString (Fabricante fabricante) {
 		return fabricante.getNombre() + " " + fabricante.getCif(); 
 	}
+
+	
 
 	
 

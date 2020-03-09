@@ -1,6 +1,6 @@
 package modelosBasesDeDatosComunesJPA;
 
-import java.security.Principal;	
+import java.security.Principal;		
 import java.sql.SQLException;
 import java.util.List;
 
@@ -16,6 +16,7 @@ import modelosBasesDeDatosComunesJPA.ventaDeCoches.Fabricante;
 import modelosBasesDeDatosComunesJPA.ventaDeCoches.Utils;
 import modelosBasesDeDatosComunesJPA.ventaDeCoches.controladores.ErrorBBDDException;
 import modelosBasesDeDatosComunesJPA.ventaDeCoches.Coche;
+import modelosBasesDeDatosComunesJPA.ventaDeCoches.controladores.FabricanteControlador;
 
 
 
@@ -143,6 +144,32 @@ public class GestionFabricante {
 		
 		
 		em.close();
+	}
+	
+	/**
+	 * 
+	 * @return
+	 * @throws ErrorBBDDException
+	 */
+	static Fabricante seleccionPorUsuario () throws ErrorBBDDException {
+		Fabricante fab = null;
+		int id = -2;
+		do {
+			System.out.println("\n\tIntroduzca ID del fabricante ('-1' - ver listado, '0' - salir): ");
+			id = Utils.getIntConsola(-1);
+			if (id == -1) {
+				listadoEntidades();
+			}
+			else {
+				if (id != 0) {
+					fab = FabricanteControlador.get(Id);
+					if (fab == null) {
+						System.out.println("\tError. Ha especificado un ID inválido.");
+					}
+				}
+			}
+		} while (fab == null && id != 0);
+		return fab;
 	}
 	
 	
